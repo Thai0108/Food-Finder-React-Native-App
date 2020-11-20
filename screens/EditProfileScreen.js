@@ -21,7 +21,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const EditProfileScreen = () => {
 
-  const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
+  const [image, setImage] = useState('https://i.ytimg.com/vi/6_c-ynAnIes/maxresdefault.jpg');
   const {colors} = useTheme();
 
   const takePhotoFromCamera = () => {
@@ -135,7 +135,7 @@ const EditProfileScreen = () => {
             </View>
           </TouchableOpacity>
           <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
-            John Doe
+            Bùi Hồng Long
           </Text>
         </View>
 

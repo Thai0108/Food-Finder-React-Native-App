@@ -1,27 +1,31 @@
 import React from 'react';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from './HomeScreen';
+import CartScreen from './Cart';
+import FoodScreen from './Snacks';
+// import FoodScreen from './Food';
+// import SnackScreen from './Snacks'
 import NotificationScreen from './NotificationScreen';
 import ExploreScreen from './ExploreScreen';
 import ProfileScreen from './ProfileScreen';
-import MapTestScreen from './MapTestScreen';
 import EditProfileScreen from './EditProfileScreen';
 
-import {useTheme, Avatar} from 'react-native-paper';
-import {View} from 'react-native-animatable';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { useTheme, Avatar } from 'react-native-paper';
+import { View } from 'react-native-animatable';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import CardListScreen from './CardListScreen';
 import CardItemDetails from './CardItemDetails';
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
+const FoodStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -33,7 +37,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Home',
         tabBarColor: '#FF6347',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-home" color={color} size={26} />
         ),
       }}
@@ -44,7 +48,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Updates',
         tabBarColor: '#1f65ff',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-notifications" color={color} size={26} />
         ),
       }}
@@ -55,7 +59,7 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Profile',
         tabBarColor: '#694fad',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-person" color={color} size={26} />
         ),
       }}
@@ -66,8 +70,19 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: 'Explore',
         tabBarColor: '#d02860',
-        tabBarIcon: ({color}) => (
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-aperture" color={color} size={26} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Food"
+      component={FoodStackScreen}
+      options={{
+        tabBarLabel: 'Food',
+        tabBarColor: '#FFEA00',
+        tabBarIcon: ({ color }) => (
+          <Icon name="ios-restaurant" color={color} size={26} />
         ),
       }}
     />
@@ -76,8 +91,8 @@ const MainTabScreen = () => (
 
 export default MainTabScreen;
 
-const HomeStackScreen = ({navigation}) => {
-  const {colors} = useTheme();
+const HomeStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   return (
     <HomeStack.Navigator
       screenOptions={{
@@ -97,7 +112,7 @@ const HomeStackScreen = ({navigation}) => {
         options={{
           title: 'FoodFinder',
           headerLeft: () => (
-            <View style={{marginLeft: 10}}>
+            <View style={{ marginLeft: 10 }}>
               <Icon.Button
                 name="ios-menu"
                 size={25}
@@ -108,23 +123,22 @@ const HomeStackScreen = ({navigation}) => {
             </View>
           ),
           headerRight: () => (
-            <View style={{flexDirection: 'row', marginRight: 10}}>
+            <View style={{ flexDirection: 'row', marginRight: 10 }}>
               <Icon.Button
                 name="ios-search"
                 size={25}
                 color={colors.text}
                 backgroundColor={colors.background}
-                onPress={() => {}}
+                onPress={() => { }}
               />
               <TouchableOpacity
-                style={{paddingHorizontal: 10, marginTop: 5}}
+                style={{ paddingHorizontal: 10, marginTop: 5 }}
                 onPress={() => {
                   navigation.navigate('Profile');
                 }}>
                 <Avatar.Image
                   source={{
-                    uri:
-                      'https://api.adorable.io/avatars/80/abott@adorable.png',
+                    uri: 'https://i.ytimg.com/vi/6_c-ynAnIes/maxresdefault.jpg',
                   }}
                   size={30}
                 />
@@ -133,18 +147,18 @@ const HomeStackScreen = ({navigation}) => {
           ),
         }}
       />
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="CardListScreen"
         component={CardListScreen}
-        options={({route}) => ({
+        options={({ route }) => ({
           title: route.params.title,
           headerBackTitleVisible: false
         })}
       />
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="CardItemDetails"
         component={CardItemDetails}
-        options={({route}) => ({
+        options={({ route }) => ({
           // title: route.params.title,
           headerBackTitleVisible: false,
           headerTitle: false,
@@ -156,7 +170,7 @@ const HomeStackScreen = ({navigation}) => {
   );
 };
 
-const NotificationStackScreen = ({navigation}) => (
+const NotificationStackScreen = ({ navigation }) => (
   <NotificationStack.Navigator
     screenOptions={{
       headerStyle: {
@@ -184,8 +198,8 @@ const NotificationStackScreen = ({navigation}) => (
   </NotificationStack.Navigator>
 );
 
-const ProfileStackScreen = ({navigation}) => {
-  const {colors} = useTheme();
+const ProfileStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
 
   return (
     <ProfileStack.Navigator
@@ -203,7 +217,7 @@ const ProfileStackScreen = ({navigation}) => {
         options={{
           title: '',
           headerLeft: () => (
-            <View style={{marginLeft: 10}}>
+            <View style={{ marginLeft: 10 }}>
               <Icon.Button
                 name="ios-menu"
                 size={25}
@@ -214,7 +228,7 @@ const ProfileStackScreen = ({navigation}) => {
             </View>
           ),
           headerRight: () => (
-            <View style={{marginRight: 10}}>
+            <View style={{ marginRight: 10 }}>
               <MaterialCommunityIcons.Button
                 name="account-edit"
                 size={25}
@@ -234,5 +248,58 @@ const ProfileStackScreen = ({navigation}) => {
         component={EditProfileScreen}
       />
     </ProfileStack.Navigator>
+  );
+};
+
+const FoodStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
+
+  return (
+    <FoodStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fff",
+          shadowColor: colors.background, // iOS
+          elevation: 0, // Android
+        },
+        headerTintColor: colors.text,
+      }}>
+      <FoodStack.Screen
+        name="Food"
+        component={FoodScreen}
+        options={{
+          title: '',
+          headerLeft: () => (
+            <View style={{ marginLeft: 10 }}>
+              <Icon.Button
+                name="ios-menu"
+                size={25}
+                backgroundColor={colors.background}
+                color={colors.text}
+                onPress={() => navigation.openDrawer()}
+              />
+            </View>
+          ),
+          // headerRight: () => (
+          //   <View style={{flexDirection: 'row', marginRight: 10}}>
+          //     <Icon.Button
+          //       name="ios-cart"
+          //       size={25}
+          //       color={colors.text}
+          //       backgroundColor={colors.background}
+          //       onPress={() => navigation.navigate('CartScreen')}
+          //     />
+          //   </View>
+          // ),
+        }}
+      />
+      <FoodStack.Screen
+        name="CartScreen"
+        options={{
+          title: 'Cart',
+        }}
+        component={CartScreen}
+      />
+    </FoodStack.Navigator>
   );
 };

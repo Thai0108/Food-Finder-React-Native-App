@@ -27,12 +27,15 @@ import MainTabScreen from './screens/MainTabScreen';
 import SupportScreen from './screens/SupportScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import BookmarkScreen from './screens/BookmarkScreen';
-
+import CartScreen from './screens/Cart';
+import FoodScreen from './screens/Food';
 import { AuthContext } from './components/context';
 
 import RootStackScreen from './screens/RootStackScreen';
 
 import AsyncStorage from '@react-native-community/async-storage';
+
+console.disableYellowBox = true; 
 
 const Drawer = createDrawerNavigator();
 
@@ -172,6 +175,8 @@ const App = () => {
           <Drawer.Screen name="SupportScreen" component={SupportScreen} />
           <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
           <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+          <Drawer.Screen name="CartScreen" component={CartScreen} />
+          <Drawer.Screen name="FoodScreen" component={FoodScreen} />
         </Drawer.Navigator>
       )
     :
